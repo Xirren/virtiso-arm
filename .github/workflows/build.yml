@@ -142,13 +142,6 @@ jobs:
             -prune \
             -exec rm -rf {} +
 
-          # Remove drivers that currently prevent Windows installation.
-          sudo find /tmp/iso \
-            -type d \
-            \( -iname viofs -o -iname pvpanic \) \
-            -prune \
-            -exec rm -rf {} +
-
           # Remove empty directories.
           sudo find /tmp/iso -depth -type d -empty -delete
       -
