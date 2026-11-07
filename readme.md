@@ -17,7 +17,8 @@ VirtISO is a slim image of the VirtIO drivers for Windows ARM64 guests as provid
 - Provides a slim VirtIO drivers ISO for Windows guests
 - Based on the [Fedora](https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/latest-virtio/) VirtIO driver image
 - Reduces the official ISO from about 700 MB to about 6 MB
-- Includes only ARM64 Windows drivers
+- Includes only Windows 11 ARM64 drivers
+- Removes Windows 10 and Windows Server 2025 drivers
 - Removes x86, i386, and AMD64 drivers
 - Removes debug symbol files
 - Removes Guest Agent and Guest Tools
@@ -28,7 +29,7 @@ VirtISO is a slim image of the VirtIO drivers for Windows ARM64 guests as provid
 
 # Usage 🚀
 
-  It contains every ARM64 driver the official image has, so there is zero loss of functionality.
+  It contains every Windows 11 ARM64 driver the official image has, so there is zero loss of functionality for Windows 11 guests.
 
 > [!TIP]
 > See also [VirtISO x64](https://github.com/qemus/virtiso/) for the x64 drivers, [VirtISO WHQL](https://github.com/qemus/virtiso-whql/) for WHQL certified drivers, and [VirtISO x86](https://github.com/qemus/virtiso-x86/) for x86 drivers.

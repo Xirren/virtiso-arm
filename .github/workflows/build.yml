@@ -125,6 +125,16 @@ jobs:
             -prune \
             -exec rm -rf {} +
 
+          # Remove drivers for unsupported Windows versions.
+          sudo find /tmp/iso \
+            -type d \
+            \( \
+              -iname w10 -o \
+              -iname 2k25 \
+            \) \
+            -prune \
+            -exec rm -rf {} +
+
           # Remove empty directories.
           sudo find /tmp/iso -depth -type d -empty -delete
       -
@@ -135,7 +145,6 @@ jobs:
           set -Eeuo pipefail
 
           sudo mkdir -p \
-            /tmp/iso/ARM64/w10 \
             /tmp/iso/ARM64/w11
 
           sudo cp -al \
@@ -145,14 +154,6 @@ jobs:
           sudo cp -al \
             /tmp/iso/viostor/w11/ARM64/. \
             /tmp/iso/ARM64/w11/
-
-          sudo cp -al \
-            /tmp/iso/vioscsi/w10/ARM64/. \
-            /tmp/iso/ARM64/w10/
-
-          sudo cp -al \
-            /tmp/iso/viostor/w10/ARM64/. \
-            /tmp/iso/ARM64/w10/
 
           # Replace any symlinks with normal files or directories.
           sudo bash -Eeuo pipefail <<'EOF'
@@ -208,16 +209,16 @@ jobs:
               fi
             done
           done <<'EOF'
-          ARM64:w10 w11
-          Balloon:w10 w11 2k25
-          NetKVM:w10 w11 2k25
-          viogpudo:w10 w11 2k25
-          vioinput:w10 w11 2k25
-          viomem:w10 w11 2k25
-          viorng:w10 w11 2k25
-          vioscsi:w10 w11 2k25
-          vioserial:w10 w11 2k25
-          viostor:w10 w11 2k25
+          ARM64:w11
+          Balloon:w11
+          NetKVM:w11
+          viogpudo:w11
+          vioinput:w11
+          viomem:w11
+          viorng:w11
+          vioscsi:w11
+          vioserial:w11
+          viostor:w11
           EOF
 
           if [ -s "$missing" ]; then
@@ -334,12 +335,10 @@ jobs:
           )
 
           windows_names = {
-              "2k25": "Windows Server 2025",
               "w11": "Windows 11",
               "2k22": "Windows Server 2022",
               "2k19": "Windows Server 2019",
               "2k16": "Windows Server 2016",
-              "w10": "Windows 10",
               "2k12R2": "Windows Server 2012 R2",
               "w8.1": "Windows 8.1",
               "2k12": "Windows Server 2012",
